@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResuCraft — Resume Editor</title>
+    <meta name="description" content="Professional resume editor inspired by modern design tools. Edit, customize, and export your resume.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══════════════════════ TOP TOOLBAR ═══════════════════════ -->
+<header id="app-toolbar">
+    <div class="toolbar-left">
+        <div class="logo">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                <rect width="28" height="28" rx="6" fill="url(#lg)"/>
+                <path d="M7 8h14v2H7zM7 13h10v1.5H7zM7 17h12v1.5H7zM7 21h8v1.5H7z" fill="white" opacity="0.9"/>
+                <defs><linearGradient id="lg" x1="0" y1="0" x2="28" y2="28"><stop stop-color="#2E86AB"/><stop offset="1" stop-color="#1A3C5E"/></linearGradient></defs>
+            </svg>
+            <span>ResuCraft</span>
+        </div>
+    </div>
+    <div class="toolbar-center">
+        <button class="tool-btn" id="btn-undo" title="Undo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10h13a4 4 0 010 8H7"/><path d="M3 10l4-4M3 10l4 4"/></svg></button>
+        <button class="tool-btn" id="btn-redo" title="Redo"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10H8a4 4 0 000 8h9"/><path d="M21 10l-4-4M21 10l-4 4"/></svg></button>
+        <div class="toolbar-divider"></div>
+        <button class="tool-btn" id="btn-add-page" title="Add Page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg> Add Page</button>
+        <button class="tool-btn" id="btn-remove-page" title="Remove Last Page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8"/></svg> Remove Page</button>
+    </div>
+    <div class="toolbar-right">
+        <button class="tool-btn" id="btn-save-local" title="Save Locally"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save</button>
+        <button class="tool-btn" id="btn-reset-local" title="Reset to Template"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Reset</button>
+        <button class="tool-btn accent" id="btn-export-pdf"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M12 15l-4-4M12 15l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg> Export PDF</button>
+    </div>
+</header>
+
+<!-- ═══════════════════ MAIN WORKSPACE ═══════════════════ -->
+<main id="workspace">
+
+    <!-- ──── LEFT: Style Panel ──── -->
+    <aside id="style-panel">
+        <h3 class="panel-title">Customize Style</h3>
+
+        <div class="panel-section">
+            <label class="panel-label">Accent Color</label>
+            <div class="color-grid" id="color-presets">
+                <button class="color-swatch active" data-color="#1A3C5E" style="background:#1A3C5E" title="Navy"></button>
+                <button class="color-swatch" data-color="#2E86AB" style="background:#2E86AB" title="Teal"></button>
+                <button class="color-swatch" data-color="#A23B72" style="background:#A23B72" title="Berry"></button>
+                <button class="color-swatch" data-color="#F18F01" style="background:#F18F01" title="Amber"></button>
+                <button class="color-swatch" data-color="#C73E1D" style="background:#C73E1D" title="Crimson"></button>
+                <button class="color-swatch" data-color="#3B1F2B" style="background:#3B1F2B" title="Plum"></button>
+                <button class="color-swatch" data-color="#2D6A4F" style="background:#2D6A4F" title="Forest"></button>
+                <button class="color-swatch" data-color="#7B2CBF" style="background:#7B2CBF" title="Violet"></button>
+                <button class="color-swatch" data-color="#495057" style="background:#495057" title="Slate"></button>
+            </div>
+            <div class="custom-color-row">
+                <label>Custom:</label>
+                <input type="color" id="custom-color" value="#1A3C5E">
+            </div>
+        </div>
+
+        <div class="panel-section">
+            <label class="panel-label">Secondary Color</label>
+            <input type="color" id="secondary-color" value="#2E86AB">
+        </div>
+
+        <div class="panel-section">
+            <label class="panel-label">Font Family</label>
+            <select id="font-select">
+                <option value="'Inter', sans-serif" selected>Inter</option>
+                <option value="'Outfit', sans-serif">Outfit</option>
+                <option value="'Georgia', serif">Georgia</option>
+                <option value="'Palatino Linotype', serif">Palatino</option>
+                <option value="'Segoe UI', sans-serif">Segoe UI</option>
+                <option value="'Calibri', sans-serif">Calibri</option>
+                <option value="'Arial', sans-serif">Arial</option>
+            </select>
+        </div>
+
+        <div class="panel-section">
+            <label class="panel-label">Base Font Size</label>
+            <input type="range" id="font-size-slider" min="8" max="14" value="10" step="0.5">
+            <span class="range-value" id="font-size-value">10pt</span>
+        </div>
+
+        <div class="panel-section">
+            <label class="panel-label">Line Spacing</label>
+            <input type="range" id="line-height-slider" min="1.2" max="2.0" value="1.5" step="0.1">
+            <span class="range-value" id="line-height-value">1.5</span>
+        </div>
+
+        <div class="panel-section">
+            <label class="panel-label">Section Spacing</label>
+            <input type="range" id="section-spacing-slider" min="0.5" max="2.0" value="1.0" step="0.1">
+            <span class="range-value" id="section-spacing-value">1.0x</span>
+        </div>
+
+        <div class="panel-section">
+            <label class="panel-label">Layout</label>
+            <div class="layout-options">
+                <button class="layout-btn active" data-layout="two-col" title="Two Column">
+                    <svg width="32" height="32" viewBox="0 0 32 32"><rect x="2" y="4" width="17" height="24" rx="2" fill="currentColor" opacity="0.3"/><rect x="21" y="4" width="9" height="24" rx="2" fill="currentColor" opacity="0.6"/></svg>
+                </button>
+                <button class="layout-btn" data-layout="single-col" title="Single Column">
+                    <svg width="32" height="32" viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="24" rx="2" fill="currentColor" opacity="0.3"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="panel-section">
+            <label class="panel-label">Sidebar Background</label>
+            <input type="color" id="sidebar-bg-color" value="#F4F7FA">
+        </div>
+
+        <div class="panel-section">
+            <label class="panel-label">Header Style</label>
+            <select id="header-style">
+                <option value="banner">Full Banner</option>
+                <option value="minimal">Minimal / Left-aligned</option>
+                <option value="centered-line">Centered with Line</option>
+            </select>
+        </div>
+
+        <div class="panel-section">
+            <h4 class="panel-subtitle">Add Section</h4>
+            <div class="add-section-buttons">
+                <button class="add-sec-btn" data-target="left" data-type="generic">+ Left Section</button>
+                <button class="add-sec-btn" data-target="right" data-type="generic">+ Right Section</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ──── CENTER: Resume Canvas ──── -->
+    <div id="canvas-area">
+        <div id="pages-container">
+
+            <!-- ═══ PAGE 1 ═══ -->
+            <div class="resume-page" data-page="1">
+
+                <!-- HEADER -->
+                <div class="resume-header banner" id="resume-header">
+                    <h1 contenteditable="true" class="editable name-field" id="full-name">MICHELLE JOSEPHINE E</h1>
+                    <p contenteditable="true" class="editable subtitle-field" id="subtitle">Psychology Student | Interested in Organizational Behavior &amp; Human Development</p>
+                    <div class="contact-row" id="contact-row">
+                        <span contenteditable="true" class="editable contact-item">✉  michjoe07@gmail.com</span>
+                        <span class="contact-sep">|</span>
+                        <span contenteditable="true" class="editable contact-item">☏  +91 9791579708</span>
+                        <span class="contact-sep">|</span>
+                        <span contenteditable="true" class="editable contact-item">📍  Chennai, India</span>
+                    </div>
+                </div>
+
+                <!-- BODY -->
+                <div class="resume-body two-col">
+                    <!-- Left Column -->
+                    <div class="col-left" id="col-left-1">
+
+                        <section class="resume-section" data-section="profile">
+                            <div class="section-header-row">
+                                <h2 contenteditable="true" class="editable section-title">ABOUT ME</h2>
+                                <button class="remove-section-btn" title="Remove section">✕</button>
+                            </div>
+                            <div class="section-line"></div>
+                            <p contenteditable="true" class="editable section-text">I'm a psychology undergraduate currently exploring how human behavior plays out in workplace and organizational settings. My coursework has given me a solid base in areas like social, developmental, and biological psychology, and I'm actively looking to apply what I'm learning in real-world contexts.<br><br>I enjoy working with people and understanding group dynamics. I'm particularly drawn to how organizations can create healthier, more supportive environments for their people — and I'm eager to learn more about how HR and people development work in practice.</p>
+                        </section>
+
+                        <section class="resume-section" data-section="education">
+                            <div class="section-header-row">
+                                <h2 contenteditable="true" class="editable section-title">EDUCATION</h2>
+                                <button class="remove-section-btn" title="Remove section">✕</button>
+                            </div>
+                            <div class="section-line"></div>
+                            <div class="entry">
+                                <div class="entry-header-row">
+                                    <h3 contenteditable="true" class="editable entry-title">B.Sc. Psychology</h3>
+                                    <button class="remove-entry-btn" title="Remove entry">✕</button>
+                                </div>
+                                <p contenteditable="true" class="editable entry-subtitle"><em>Women's Christian College, Madras University</em>  —  2024 – 2027</p>
+                                <p contenteditable="true" class="editable entry-detail"><strong>Relevant subjects:</strong> Developmental Psychology, Biological Psychology, Social Psychology, Cognitive Psychology, Descriptive Statistics</p>
+                            </div>
+                            <button class="add-entry-btn">+ Add Entry</button>
+                        </section>
+
+                        <section class="resume-section" data-section="experience">
+                            <div class="section-header-row">
+                                <h2 contenteditable="true" class="editable section-title">EXPERIENCE</h2>
+                                <button class="remove-section-btn" title="Remove section">✕</button>
+                            </div>
+                            <div class="section-line"></div>
+
+                            <div class="entry">
+                                <div class="entry-header-row">
+                                    <h3 contenteditable="true" class="editable entry-title">Volunteer Teaching Assistant</h3>
+                                    <button class="remove-entry-btn" title="Remove entry">✕</button>
+                                </div>
+                                <p contenteditable="true" class="editable entry-subtitle"><em>Asha General Education School for Special Children</em>  —  St. Andrew's Kirk Church, Chennai</p>
+                                <ul class="entry-bullets">
+                                    <li contenteditable="true" class="editable">Assisted children with special needs during classroom activities and helped create a more engaging learning environment.</li>
+                                    <li contenteditable="true" class="editable">Learned to communicate more patiently and adapt my approach depending on each child's needs — something I think translates well to working with diverse teams.</li>
+                                    <li contenteditable="true" class="editable">Worked alongside teachers to observe and understand different behavioral patterns, which sharpened my attention to detail.</li>
+                                </ul>
+                                <button class="add-bullet-btn">+ Add Bullet</button>
+                            </div>
+
+                            <div class="entry">
+                                <div class="entry-header-row">
+                                    <h3 contenteditable="true" class="editable entry-title">Active Member — Young Indians Club (Yi)</h3>
+                                    <button class="remove-entry-btn" title="Remove entry">✕</button>
+                                </div>
+                                <p contenteditable="true" class="editable entry-subtitle"><em>Confederation of Indian Industry (CII)</em></p>
+                                <ul class="entry-bullets">
+                                    <li contenteditable="true" class="editable">Participated in youth-led community and social impact projects organized under CII.</li>
+                                    <li contenteditable="true" class="editable">Got hands-on experience coordinating events and working with different stakeholders, which improved my teamwork and communication skills.</li>
+                                    <li contenteditable="true" class="editable">Regularly spoke at forums and discussions, which helped me get more comfortable with public speaking.</li>
+                                </ul>
+                                <button class="add-bullet-btn">+ Add Bullet</button>
+                            </div>
+                            <button class="add-entry-btn">+ Add Entry</button>
+                        </section>
+
+                        <section class="resume-section" data-section="projects">
+                            <div class="section-header-row">
+                                <h2 contenteditable="true" class="editable section-title">ACADEMIC PROJECTS</h2>
+                                <button class="remove-section-btn" title="Remove section">✕</button>
+                            </div>
+                            <div class="section-line"></div>
+
+                            <div class="entry">
+                                <div class="entry-header-row">
+                                    <h3 contenteditable="true" class="editable entry-title">Workplace Well-Being &amp; Organizational Culture</h3>
+                                    <button class="remove-entry-btn" title="Remove entry">✕</button>
+                                </div>
+                                <ul class="entry-bullets">
+                                    <li contenteditable="true" class="editable">Reviewed existing research on how organizational culture affects employee mental health and productivity, drawing from industrial-organizational psychology literature.</li>
+                                </ul>
+                                <button class="add-bullet-btn">+ Add Bullet</button>
+                            </div>
+
+                            <div class="entry">
+                                <div class="entry-header-row">
+                                    <h3 contenteditable="true" class="editable entry-title">Behavioral Analysis &amp; Survey Research</h3>
+                                    <button class="remove-entry-btn" title="Remove entry">✕</button>
+                                </div>
+                                <ul class="entry-bullets">
+                                    <li contenteditable="true" class="editable">Designed and conducted surveys within peer groups to study behavioral trends. Analyzed the data using descriptive statistics as part of my research methods coursework.</li>
+                                </ul>
+                                <button class="add-bullet-btn">+ Add Bullet</button>
+                            </div>
+                            <button class="add-entry-btn">+ Add Entry</button>
+                        </section>
+
+                    </div>
+
+                    <!-- Right Column / Sidebar -->
+                    <div class="col-right" id="col-right-1">
+
+                        <section class="resume-section" data-section="skills">
+                            <div class="section-header-row">
+                                <h2 contenteditable="true" class="editable section-title">SKILLS</h2>
+                                <button class="remove-section-btn" title="Remove section">✕</button>
+                            </div>
+                            <div class="section-line"></div>
+                            <ul class="tag-list" id="skills-list">
+                                <li contenteditable="true" class="editable tag-item">Research &amp; survey design</li>
+                                <li contenteditable="true" class="editable tag-item">Descriptive statistics &amp; basic data analysis</li>
+                                <li contenteditable="true" class="editable tag-item">Behavioral observation</li>
+                                <li contenteditable="true" class="editable tag-item">Microsoft Office (Word, Excel, PowerPoint), Google Workspace</li>
+                                <li contenteditable="true" class="editable tag-item">Good written and verbal communication</li>
+                            </ul>
+                            <button class="add-tag-btn">+ Add Item</button>
+                        </section>
+
+                        <section class="resume-section" data-section="interests">
+                            <div class="section-header-row">
+                                <h2 contenteditable="true" class="editable section-title">AREAS I WANT TO GROW IN</h2>
+                                <button class="remove-section-btn" title="Remove section">✕</button>
+                            </div>
+                            <div class="section-line"></div>
+                            <ul class="tag-list">
+                                <li contenteditable="true" class="editable tag-item">HR and talent development</li>
+                                <li contenteditable="true" class="editable tag-item">Workplace mental health</li>
+                                <li contenteditable="true" class="editable tag-item">Psychometric tools and assessment</li>
+                                <li contenteditable="true" class="editable tag-item">Diversity and inclusion practices</li>
+                                <li contenteditable="true" class="editable tag-item">Training and development</li>
+                            </ul>
+                            <button class="add-tag-btn">+ Add Item</button>
+                        </section>
+
+                        <section class="resume-section" data-section="languages">
+                            <div class="section-header-row">
+                                <h2 contenteditable="true" class="editable section-title">LANGUAGES</h2>
+                                <button class="remove-section-btn" title="Remove section">✕</button>
+                            </div>
+                            <div class="section-line"></div>
+                            <ul class="lang-list">
+                                <li><span contenteditable="true" class="editable lang-name">English</span> — <span contenteditable="true" class="editable lang-level">Proficient</span> <button class="remove-inline-btn">✕</button></li>
+                                <li><span contenteditable="true" class="editable lang-name">Tamil</span> — <span contenteditable="true" class="editable lang-level">Native</span> <button class="remove-inline-btn">✕</button></li>
+                                <li><span contenteditable="true" class="editable lang-name">Hindi</span> — <span contenteditable="true" class="editable lang-level">Basic</span> <button class="remove-inline-btn">✕</button></li>
+                            </ul>
+                            <button class="add-tag-btn">+ Add Language</button>
+                        </section>
+
+                        <section class="resume-section" data-section="activities">
+                            <div class="section-header-row">
+                                <h2 contenteditable="true" class="editable section-title">ACTIVITIES</h2>
+                                <button class="remove-section-btn" title="Remove section">✕</button>
+                            </div>
+                            <div class="section-line"></div>
+                            <ul class="entry-bullets sidebar-bullets">
+                                <li contenteditable="true" class="editable">Member, Young Indians Club (CII)</li>
+                                <li contenteditable="true" class="editable">Volunteer, St. Andrew's Kirk Church — Special Education</li>
+                                <li contenteditable="true" class="editable">Active in college cultural and academic events</li>
+                            </ul>
+                            <button class="add-bullet-btn">+ Add Item</button>
+                        </section>
+
+                        <section class="resume-section" data-section="references">
+                            <div class="section-header-row">
+                                <h2 contenteditable="true" class="editable section-title">REFERENCES</h2>
+                                <button class="remove-section-btn" title="Remove section">✕</button>
+                            </div>
+                            <div class="section-line"></div>
+                            <p contenteditable="true" class="editable section-text">Available on request</p>
+                        </section>
+
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGE 1 -->
+
+        </div>
+    </div>
+
+</main>
+
+<div id="toast" class="toast">Saved locally</div>
+
+<script src="script.js"></script>
+</body>
+</html>
