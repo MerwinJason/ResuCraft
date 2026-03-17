@@ -12,9 +12,122 @@
 </head>
 <body>
 
+<!-- ═══════════════════════ HOME VIEW ═══════════════════════ -->
+<div id="home-view">
+    <div class="home-hero">
+        <div class="logo">
+            <svg width="40" height="40" viewBox="0 0 28 28" fill="none">
+                <rect width="28" height="28" rx="6" fill="url(#lg-hero)"/>
+                <path d="M7 8h14v2H7zM7 13h10v1.5H7zM7 17h12v1.5H7zM7 21h8v1.5H7z" fill="white" opacity="0.9"/>
+                <defs><linearGradient id="lg-hero" x1="0" y1="0" x2="28" y2="28"><stop stop-color="#2E86AB"/><stop offset="1" stop-color="#1A3C5E"/></linearGradient></defs>
+            </svg>
+            <h1>ResuCraft</h1>
+        </div>
+        <p class="hero-subtitle">Your professional resume, crafted locally.</p>
+    </div>
+
+    <div class="home-container">
+        <section class="home-section">
+            <h2>Your Saved Versions</h2>
+            <div id="home-versions-grid" class="cards-grid">
+                <!-- Populated via JS -->
+            </div>
+        </section>
+
+        <section class="home-section">
+            <h2>Start from a Template</h2>
+            <div class="cards-grid">
+                <div class="template-card" data-template="intern">
+                    <div class="template-preview classic-preview">
+                        <svg viewBox="0 0 100 130" width="100%" height="100%">
+                            <!-- Header (Minimal) -->
+                            <rect x="10" y="10" width="60" height="6" fill="#1A3C5E"/>
+                            <rect x="10" y="20" width="40" height="3" fill="#6b7280" opacity="0.6"/>
+                            <!-- Border Line -->
+                            <rect x="10" y="28" width="80" height="1" fill="#1A3C5E"/>
+                            <!-- Body (Two Col: Left 62%, Right 38%) -->
+                            <!-- Left Col -->
+                            <rect x="10" y="35" width="45" height="4" fill="#1A3C5E" opacity="0.8"/>
+                            <rect x="10" y="42" width="45" height="2" fill="#6b7280" opacity="0.4"/>
+                            <rect x="10" y="46" width="35" height="2" fill="#6b7280" opacity="0.4"/>
+                            <rect x="10" y="58" width="45" height="4" fill="#1A3C5E" opacity="0.8"/>
+                            <rect x="10" y="65" width="45" height="2" fill="#6b7280" opacity="0.4"/>
+                            <rect x="10" y="69" width="40" height="2" fill="#6b7280" opacity="0.4"/>
+                            <rect x="10" y="73" width="30" height="2" fill="#6b7280" opacity="0.4"/>
+                            <!-- Right Col -->
+                            <rect x="62" y="30" width="38" height="100" fill="#F4F7FA"/>
+                            <rect x="68" y="35" width="25" height="4" fill="#1A3C5E" opacity="0.8"/>
+                            <rect x="68" y="43" width="20" height="2" fill="#6b7280" opacity="0.4"/>
+                            <rect x="68" y="47" width="15" height="2" fill="#6b7280" opacity="0.4"/>
+                            <rect x="68" y="55" width="25" height="4" fill="#1A3C5E" opacity="0.8"/>
+                            <rect x="68" y="63" width="18" height="2" fill="#6b7280" opacity="0.4"/>
+                        </svg>
+                    </div>
+                    <h3>Intern Graduate</h3>
+                    <p>Clean structure for academics & projects.</p>
+                </div>
+                <div class="template-card" data-template="fresher">
+                    <div class="template-preview modern-preview">
+                        <svg viewBox="0 0 100 130" width="100%" height="100%">
+                            <!-- Header (Banner) -->
+                            <rect x="0" y="0" width="100" height="30" fill="#495057"/>
+                            <rect x="20" y="10" width="60" height="6" fill="#ffffff"/>
+                            <rect x="30" y="20" width="40" height="3" fill="#ffffff" opacity="0.6"/>
+                            <!-- Body (Single Col) -->
+                            <rect x="15" y="40" width="70" height="4" fill="#495057" opacity="0.8"/>
+                            <rect x="15" y="46" width="20" height="1" fill="#2E86AB"/>
+                            <rect x="15" y="51" width="70" height="2" fill="#6b7280" opacity="0.4"/>
+                            <rect x="15" y="55" width="60" height="2" fill="#6b7280" opacity="0.4"/>
+                            <rect x="15" y="65" width="70" height="4" fill="#495057" opacity="0.8"/>
+                            <rect x="15" y="71" width="20" height="1" fill="#2E86AB"/>
+                            <rect x="15" y="76" width="65" height="2" fill="#6b7280" opacity="0.4"/>
+                            <rect x="15" y="80" width="60" height="2" fill="#6b7280" opacity="0.4"/>
+                            <rect x="15" y="84" width="40" height="2" fill="#6b7280" opacity="0.4"/>
+                        </svg>
+                    </div>
+                    <h3>Fresher Start</h3>
+                    <p>Skill-focused single-column layout.</p>
+                </div>
+                <div class="template-card" data-template="professional">
+                    <div class="template-preview creative-preview">
+                        <svg viewBox="0 0 100 130" width="100%" height="100%">
+                            <!-- Header (Centered Line) -->
+                            <rect x="20" y="10" width="60" height="6" fill="#A23B72"/>
+                            <rect x="40" y="20" width="20" height="2" fill="#F18F01"/>
+                            <rect x="25" y="26" width="50" height="3" fill="#6b7280" opacity="0.6"/>
+                            <!-- Body (Two Col: Left 62%, Right 38%) -->
+                            <rect x="62" y="35" width="38" height="95" fill="#FFF4F4"/> <!-- Subtle tint sidebar -->
+                            <!-- Left Col -->
+                            <rect x="10" y="40" width="45" height="4" fill="#A23B72" opacity="0.8"/>
+                            <rect x="10" y="45" width="25" height="1" fill="#F18F01"/>
+                            <rect x="10" y="50" width="45" height="2" fill="#6b7280" opacity="0.4"/>
+                            <rect x="10" y="54" width="35" height="2" fill="#6b7280" opacity="0.4"/>
+                            <rect x="10" y="66" width="45" height="4" fill="#A23B72" opacity="0.8"/>
+                            <rect x="10" y="71" width="25" height="1" fill="#F18F01"/>
+                            <rect x="10" y="76" width="40" height="2" fill="#6b7280" opacity="0.4"/>
+                            <!-- Right Col -->
+                            <rect x="68" y="40" width="25" height="4" fill="#A23B72" opacity="0.8"/>
+                            <rect x="68" y="45" width="15" height="1" fill="#F18F01"/>
+                            <rect x="68" y="50" width="20" height="2" fill="#6b7280" opacity="0.4"/>
+                            <rect x="68" y="54" width="15" height="2" fill="#6b7280" opacity="0.4"/>
+                        </svg>
+                    </div>
+                    <h3>Experienced Professional</h3>
+                    <p>Detailed two-column corporate layout.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- ═══════════════════════ EDITOR VIEW ═══════════════════════ -->
+<div id="editor-view" style="display: none;">
+
 <!-- ═══════════════════════ TOP TOOLBAR ═══════════════════════ -->
 <header id="app-toolbar">
     <div class="toolbar-left">
+        <button class="tool-btn" id="btn-go-home" title="Return to Home"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Home</button>
+        <div class="toolbar-divider"></div>
         <div class="logo">
             <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
                 <rect width="28" height="28" rx="6" fill="url(#lg)"/>
@@ -32,8 +145,8 @@
         <button class="tool-btn" id="btn-remove-page" title="Remove Last Page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8"/></svg> Remove Page</button>
     </div>
     <div class="toolbar-right">
-        <button class="tool-btn" id="btn-save-local" title="Save Locally"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save</button>
-        <button class="tool-btn" id="btn-reset-local" title="Reset to Template"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg> Reset</button>
+        <button class="tool-btn" id="btn-save-version" title="Save Current State as a Version"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg> Save Version</button>
+        <button class="tool-btn" id="btn-open-versions" title="Open Version History"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Open Version</button>
         <button class="tool-btn accent" id="btn-export-pdf"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M12 15l-4-4M12 15l4-4"/><path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg> Export PDF</button>
     </div>
 </header>
@@ -127,6 +240,24 @@
         </div>
 
         <div class="panel-section">
+            <label class="panel-label">Photo Shape</label>
+            <select id="photo-shape">
+                <option value="hidden">Hidden</option>
+                <option value="round">Round</option>
+                <option value="square">Square</option>
+            </select>
+        </div>
+
+        <div class="panel-section">
+            <label class="panel-label">Photo Position</label>
+            <select id="photo-position">
+                <option value="photo-top">Top (Default)</option>
+                <option value="photo-left">Align Left</option>
+                <option value="photo-right">Align Right</option>
+            </select>
+        </div>
+
+        <div class="panel-section">
             <h4 class="panel-subtitle">Add Section</h4>
             <div class="add-section-buttons">
                 <button class="add-sec-btn" data-target="left" data-type="generic">+ Left Section</button>
@@ -144,14 +275,21 @@
 
                 <!-- HEADER -->
                 <div class="resume-header banner" id="resume-header">
-                    <h1 contenteditable="true" class="editable name-field" id="full-name">MICHELLE JOSEPHINE E</h1>
-                    <p contenteditable="true" class="editable subtitle-field" id="subtitle">Psychology Student | Interested in Organizational Behavior &amp; Human Development</p>
-                    <div class="contact-row" id="contact-row">
-                        <span contenteditable="true" class="editable contact-item">✉  michjoe07@gmail.com</span>
-                        <span class="contact-sep">|</span>
-                        <span contenteditable="true" class="editable contact-item">☏  +91 9791579708</span>
-                        <span class="contact-sep">|</span>
-                        <span contenteditable="true" class="editable contact-item">📍  Chennai, India</span>
+                    <div class="profile-photo-container hidden" title="Click to upload photo">
+                        <img id="profile-photo" src="" alt="Profile Photo">
+                        <div class="photo-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg></div>
+                        <input type="file" id="photo-upload" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="header-content">
+                        <h1 contenteditable="true" class="editable name-field" id="full-name">MICHELLE JOSEPHINE E</h1>
+                        <p contenteditable="true" class="editable subtitle-field" id="subtitle">Psychology Student | Interested in Organizational Behavior &amp; Human Development</p>
+                        <div class="contact-row" id="contact-row">
+                            <span contenteditable="true" class="editable contact-item">✉  michjoe07@gmail.com</span>
+                            <span class="contact-sep">|</span>
+                            <span contenteditable="true" class="editable contact-item">☏  +91 9791579708</span>
+                            <span class="contact-sep">|</span>
+                            <span contenteditable="true" class="editable contact-item">📍  Chennai, India</span>
+                        </div>
                     </div>
                 </div>
 
@@ -338,7 +476,24 @@
 
 </main>
 
+</div> <!-- END EDITOR VIEW -->
+
 <div id="toast" class="toast">Saved locally</div>
+
+<!-- ═══════════════════ VERSIONS MODAL ═══════════════════ -->
+<div id="versions-modal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Version History</h3>
+            <button id="close-modal-btn" class="close-btn">✕</button>
+        </div>
+        <div class="modal-body">
+            <ul id="versions-list" class="versions-list">
+                <!-- Versions will be populated here -->
+            </ul>
+        </div>
+    </div>
+</div>
 
 <script src="script.js"></script>
 </body>
